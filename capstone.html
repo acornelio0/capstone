@@ -831,13 +831,13 @@ hljs.initHighlightingOnLoad();
 The sampled data was split 70-30 into a train set and a validation set. The train set was used to build the N-Gram models, and the validation set was used to randomly build one thousand Bi-Gram, and Tri-Gram test phrases. Here are the results.
 </small></p>
 
-<pre><code>     Sample Size(%)   Pruned Size   Accuracy(%)
-[1,]              1           1.0         12.05
-[2,]              1           0.9          7.43
-[3,]              5           1.0         22.82
-[4,]              5           0.9         15.92
-[5,]             10           1.0         27.73
-[6,]             10           0.9         20.42
+<pre><code>     Sample Size(%)   Pruned Size    2-Grams    3-Grams   Accuracy(%)
+[1,]              1           1.0     118845     129170         12.05
+[2,]              1           0.9       6316        382          7.43
+[3,]              5           1.0     543407     653631         22.82
+[4,]              5           0.9      50846       4580         15.92
+[5,]             10           1.0    1019097    1308576         27.73
+[6,]             10           0.9     117750      13227         20.42
 </code></pre>
 
 <p><small>
@@ -854,13 +854,17 @@ A 10 fold increase in sample size gave only about a 2 to 3 fold improvement in a
 <section data-transition="linear" data-transition-speed="default">
 <h3>Conculsion</h3>
 <div class="slideContent" >
-<p>Most tweeks that improved the models size had a negative impact on accuracy.</p>
+<p><small>
+<strong>My Model Pick:</strong> I selected the Sample Size=1%, Pruned Size=1.0 model with an accuracy of 12%. I picked it because the model can be built in minutes, and can adapt to a changing Corpus in real time. </p>
 
-<p>The N-Gram models have a low accuracy rate for a diverse Corpus.</p>
+<p><strong>The Alternate Pick:</strong> The Sample Size=10%, Pruned Size=0.9 model has similar number of 2-Gram and 3-Gram phrases, but is 70% more accurate than the model I picked, however it takes over 8 hours to build. </p>
 
-<p>Sampled subsets of below 10% did not sufficiently represent the Corpus, but using more than 10% sample size took a long time (over 8 hours) to build the N-Gram models. The simplified Stupid Backoff prediction algorithm that used absolute frequencies was very fast.</p>
+<p>Sampled subsets of below 10% did not sufficiently represent the Corpus; however, using more than 10% sample size took a long time (well over 8 hours) to build the N-Gram models. </p>
 
-<p>The N-Gram model may be more accurate for an individual&#39;s writing style, or for a well defined set of tasks on a personal mobile device. This hypothesis will be a promising area of further exploration.</p>
+<p>The simplified Stupid Backoff prediction algorithm that used absolute frequencies was very fast.</p>
+
+<p>The N-Gram model could be more accurate for an individual&#39;s writing style, or for a well defined set of tasks on a personal mobile device. This hypothesis will be a promising area of further exploration.
+</small></p>
 
 </div>
 
