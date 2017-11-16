@@ -787,6 +787,11 @@ hljs.initHighlightingOnLoad();
 <h1>Capstone Project: Predict the Next Word</h1><p>Aloysius Cornelio<br/>November 15th, 2017</p>
 
 <div class="slideContent" >
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
 
 </div>
 
@@ -794,13 +799,13 @@ hljs.initHighlightingOnLoad();
 <section data-transition="linear" data-transition-speed="default">
 <h3>Overview</h3>
 <div class="slideContent" >
-<p>This presentation describes the Natural Language Processing (NPL) capstone project to predict the next word for a given sequence of words.</p>
+<p>This presentation describes the Natural Language Processing (NLP) Capstone Project to predict the next word for a given sequence of words.</p>
 
 <p>A Shiny web application was built to take a sequence of words and print out the predicted word on the screen. <a href="https://acornelio.shinyapps.io/predictword/">See here</a>. </p>
 
-<p>The application uses N-Gram models that were built from a randomly sampled subset (1%) of three data sources: blogs, news, and twiter files.  And Google&#39;s Stupid Backoff algorithm was used for prediction.</p>
+<p>N-Gram models were built from a randomly sampled subset of three data sources: blogs, news, and twitter files.  And Google&#39;s Stupid Backoff algorithm was used for prediction.</p>
 
-<p>The N-Gram model selected was a tradeoff between accuracy and size of the model. The N-Gram model selected for the project used a 1% sample size with no pruning of the vocabulary.</p>
+<p>Model selection was based on the tradeoff between accuracy and model size. The model selected for the project used a 1% sample size with no pruning of the vocabulary.</p>
 
 </div>
 
@@ -810,19 +815,21 @@ hljs.initHighlightingOnLoad();
 <div class="slideContent" >
 <p>The data was cleaned by removing numbers, special characters, URLs, stopwords, and profanity.</p>
 
-<p>Uni-Gram, Bi-Gram, and Tri-Gram models were build from the cleaned data and used to predict the next word. The frequency of the N-Gram words was used to rank the N-gram phrases.</p>
+<p>Bi-Gram and Tri-Gram models were built from the cleaned data and used to predict the next word. The frequency of the N-Grams was used to rank the predictions.</p>
 
-<p>The Stupid Backoff algorithm was used to predict the next word.  This algoithm was fast and used the N-Gram frequencies to make the predictions.</p>
+<p>The Stupid Backoff algorithm was used to predict the next word.  This algorithm was modified to use the N-Gram absolute frequencies to make predictions.</p>
 
-<p>Removing the most frequent words in the Corpus from the N-Gram model did not impact the accuracy of the prediction. However, dropping 10% of the least used words had a negative impact on the accuracy of the model.</p>
+<p>Removing a few (about 20) of the most frequent words in the Corpus from the N-Gram models did not impact the accuracy of the prediction. However, dropping 10% of the least used words had a significant negative impact on the accuracy of the models.</p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
 <h3>Model Optimization and Selection</h3>
-<div class="slideContent" >
-<p>The sampled data was split 70-30 into a train set and a validation set. The train set was used to build the N-Gram models, and the validation set was used to randomly build one thousand Bi-Gram, and Tri-Gram test phrases. Here are the results.</p>
+<div class="slideContent small-code" >
+<p><small>
+The sampled data was split 70-30 into a train set and a validation set. The train set was used to build the N-Gram models, and the validation set was used to randomly build one thousand Bi-Gram, and Tri-Gram test phrases. Here are the results.
+</small></p>
 
 <pre><code>     Sample Size(%)   Pruned Size   Accuracy(%)
 [1,]              1           1.0         12.05
@@ -833,7 +840,13 @@ hljs.initHighlightingOnLoad();
 [6,]             10           0.9         20.42
 </code></pre>
 
-<p>A 10 fold increase in sample size gave only about a 2 to 3 fold improvement in accuracy. Pruning the vocabulary by 10%, caused the accuracy to drop between 25% (for 10% sample size) to 40%(for 1% sampled size).</p>
+<p><small>
+A 10 fold increase in sample size gave only about a 2 to 3 fold improvement in accuracy. </p>
+
+<p>Pruning the vocabulary of the least frequent words in the Corpus by 10% (i.e., Pruned Size = 0.9), caused the accuracy to drop between 25% (for 10% sample size) to 40%(for 1% sample size). </p>
+
+<p>Dropping phrases that span sentence boundaries did not impact accuracy.
+</small></p>
 
 </div>
 
@@ -841,11 +854,13 @@ hljs.initHighlightingOnLoad();
 <section data-transition="linear" data-transition-speed="default">
 <h3>Conculsion</h3>
 <div class="slideContent" >
-<p>Performace tweeks improved the models size, but had a negative impact on accuracy.</p>
+<p>Most tweeks that improved the models size had a negative impact on accuracy.</p>
 
-<p>The N-Gram models have a low accuracy rate for a diverse Corpus. The sampled subsets of below 10% did not sufficiently represent the Corpus, but using more than 10% sample size took a long time (over 8 hours) to build the N-Gram models.</p>
+<p>The N-Gram models have a low accuracy rate for a diverse Corpus.</p>
 
-<p>The N-Gram model could be better suited for an individual&#39;s writing style as a personal writing assistant for a well defined set of tasks on a personal mobile device. This hypothesis will be a promising area of further exploration.</p>
+<p>Sampled subsets of below 10% did not sufficiently represent the Corpus, but using more than 10% sample size took a long time (over 8 hours) to build the N-Gram models. The simplified Stupid Backoff prediction algorithm that used absolute frequencies was very fast.</p>
+
+<p>The N-Gram model may be more accurate for an individual&#39;s writing style, or for a well defined set of tasks on a personal mobile device. This hypothesis will be a promising area of further exploration.</p>
 
 </div>
 
