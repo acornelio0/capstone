@@ -813,7 +813,7 @@ hljs.initHighlightingOnLoad();
 <section data-transition="linear" data-transition-speed="default">
 <h3>Data Preperation and Model Building</h3>
 <div class="slideContent" >
-<p>The data was cleaned by removing numbers, special characters, URLs, stopwords, and profanity.</p>
+<p>The data was cleaned by removing numbers, special characters, URLs, and profanity. Stopwords were not removed.</p>
 
 <p>Bi-Gram and Tri-Gram models were built from the cleaned data and used to predict the next word. The frequency of the N-Grams was used to rank the predictions.</p>
 
@@ -855,7 +855,7 @@ A 10 fold increase in sample size gave only about a 2 to 3 fold improvement in a
 <h3>Conculsion</h3>
 <div class="slideContent" >
 <p><small>
-<strong>My Model Pick:</strong> I selected the Sample Size=1%, Pruned Size=1.0 model with an accuracy of 12%. I picked it because the model can be built in minutes, and can adapt to a changing Corpus in real time. </p>
+<strong>My Model Pick:</strong> I selected the Sample Size=1%, Pruned Size=1.0 model with an accuracy of 12%. I picked it because the model can be built in minutes, and can adapt to a changing Corpus in near real time. </p>
 
 <p><strong>The Alternate Pick:</strong> The Sample Size=10%, Pruned Size=0.9 model has similar number of 2-Gram and 3-Gram phrases, but is 70% more accurate than the model I picked, however it takes over 8 hours to build. </p>
 
